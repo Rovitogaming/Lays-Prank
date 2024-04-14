@@ -1,0 +1,3 @@
+Get-PnpDevice -Class 'Mouse' -PresentOnly | Enable-PnpDevice -Confirm:$false
+
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
