@@ -8,9 +8,15 @@ Since then me and my other cousin have been taunting him with it and as a joke I
 - *IF* you close chrome, the program will disable any connected computer mice and relaunch chrome
 - *IF* you close chrome a second time, the program will fake a bluescreen using a hta application (This is not a real bluescreen, just a fullscreen application)
 
-**How to return your computer back to normal**
+**How to return your computer back to normal:**
 - Close the fake BSOD application by hitting the windows key and hitting the close button on the window
 - Open task manager and find the process "Microsoft Windows Based Script Host" (RGB Cube Icon) (WScript.exe) and end the task, OR Simply restart your computer to end the task but thats kinda overkill
 - Now you can close chrome with nothing happening
 - Re-enable your mouse via device manager, you can plug in a second mouse and that will work, or just use the keyboard, alternatively you can run the powershell command to enable the mouse found in UsefulCommands.txt
 - If you want you can delete the Lays.vbs file and delete the C:\Lays folder, but this is not super nesessary
+
+**TO REITERATE:**
+This software is completely harmless other than the annoyance of disabling your mouse, even though it can be easily re-enabled
+If you follow the above instructions, there should be no lasting damage or traces on your system
+
+With any code you run on your machine, there is the possibity for errors/damage however, this software was created without any malicious intent, and purely for fun/education/entertainment reasons!
