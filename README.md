@@ -3,9 +3,9 @@ It's an inside joke where once we accidentally ruined a TV by burning a google i
 Since then me and my other cousin have been taunting him with it and as a joke I created this program that will pretend to take over your computer to burn lays into your monitor
 
 **Requirements:**
--Google Chrome
--Windows 10
--Powershell execution policy needs to be remotesigned
+- Google Chrome
+- Windows 10
+- Powershell execution policy needs to be remotesigned
 
 **What it does:**
 - Some popup dialog boxes explaining to the user whats happening "your computer's been infected", "Lays will be burned into your monitor", "Just let it happen"
